@@ -13,10 +13,11 @@ public class Coin {
 		super();
 
 		this.diameter = diameter;
-		this.radius = radius;
-		this.value = value;
+		this.radius   = radius  ;
+		this.value 	  = value   ;
 		
-		for(int i=0; i<rapport.length; i++) {
+		for(int i=0; i<rapport.length; i++) 
+		{
 			this.rapport[i] = rapport[i];
 		}
 	}
