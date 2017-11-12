@@ -1,5 +1,7 @@
 package com.coins;
 
+import java.util.ArrayList;
+
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
@@ -14,8 +16,15 @@ public class DetectCircle {
 	static {System.loadLibrary(Core.NATIVE_LIBRARY_NAME);}
 	
 	public static void detect(String path) {
+		
+		
+		
+		ArrayList<Integer> radiusList = new ArrayList<>();
+		
+		
 		//read image
 		Mat image = Imgcodecs.imread(path);
+		
 		
 		if(image.dataAddr() == 0) {
 			System.out.println("Error in reading image");
@@ -45,13 +54,17 @@ public class DetectCircle {
 				Imgproc.circle(image, center, 1, new Scalar(0,100,100), 3, 8, 0 );
 	            int radius = (int) Math.round(c[2]);
 	            Imgproc.circle(image, center, radius, new Scalar(255,0,255), 3, 8, 0 );
-				
+				radiusList.add((int) Math.round(c[2]));
 			}
 			
 			new ImageViewer().show(image, "circles");
 			
 			System.out.println("Circles ="+circles.dump());
 			System.out.println(circles);
+			
+			for(Integer t : radiusList) {
+				System.out.println(t.intValue());
+			}
 			
 			
 		}

@@ -5,7 +5,7 @@ public class CoinsGen {
 
 	
 	
-	public static void generate(Coin C1, Coin C5, Coin C10, Coin C20, Coin C50, Coin D1, Coin D2, Coin D5, Coin D10) {
+	/*public static void generate(Coin C1, Coin C5, Coin C10, Coin C20, Coin C50, Coin D1, Coin D2, Coin D5, Coin D10) {
 		
 		// C1
 		C1.setDiameter(17);
@@ -60,6 +60,6 @@ public class CoinsGen {
 		D10.setDiameter(28);
 		D10.setRadius(14);
 		D10.setRapport(new float[] {28/17, 28/17.5f, 28/20, 28/23, 28/21, 28/24, 28/26, 28/25, 28/28});
-	}
+	}*/
 
 }
