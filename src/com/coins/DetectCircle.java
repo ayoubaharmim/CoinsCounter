@@ -24,16 +24,17 @@ public class DetectCircle {
 		
 			Mat gray = new Mat();
 			Imgproc.cvtColor(image, gray, Imgproc.COLOR_BGR2GRAY);
-			Imgproc.Canny(gray, gray, 1, 1);
-			//Imgproc.medianBlur(gray, gray, 5);
-			
+			//Imgproc.Canny(gray, gray, 1, 1);
+		
+			Imgproc.medianBlur(gray, gray, 11);
+			new ImageViewer().show(gray, "Blur");
 			Mat circles = new Mat();
 			
 			//Imgproc.HoughCircles(gray, circles, Imgproc.HOUGH_GRADIENT, 1, 1);
 			
 			Imgproc.HoughCircles(gray, circles, Imgproc.HOUGH_GRADIENT, 1.0,
 	                (double)gray.rows()/16, // change this value to detect circles with different distances to each other
-	                100.0, 30.0, 1, 20); // change the last two parameters
+	                100.0, 30.0, 1, 10000); // change the last two parameters
 	                // (min_radius & max_radius) to detect larger circles
 
 			
@@ -48,7 +49,7 @@ public class DetectCircle {
 			}
 			
 			new ImageViewer().show(image, "circles");
-			new ImageViewer().show(gray, "Blur");
+			
 			System.out.println("Circles ="+circles.dump());
 			System.out.println(circles);
 			
