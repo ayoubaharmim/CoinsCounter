@@ -15,11 +15,11 @@ public class DetectCircle {
 	
 	static {System.loadLibrary(Core.NATIVE_LIBRARY_NAME);}
 	
-	public static void detect(String path) {
+	public static Mat detect(String path) {
 		
 		
 		
-		ArrayList<Integer> radiusList = new ArrayList<>();
+		ArrayList<Integer> diameterList = new ArrayList<>();
 		
 		
 		//read image
@@ -36,7 +36,7 @@ public class DetectCircle {
 			//Imgproc.Canny(gray, gray, 1, 1);
 		
 			Imgproc.medianBlur(gray, gray, 11);
-			new ImageViewer().show(gray, "Blur");
+			//new ImageViewer().show(gray, "Blur");
 			Mat circles = new Mat();
 			
 			//Imgproc.HoughCircles(gray, circles, Imgproc.HOUGH_GRADIENT, 1, 1);
@@ -54,20 +54,28 @@ public class DetectCircle {
 				Imgproc.circle(image, center, 1, new Scalar(0,100,100), 3, 8, 0 );
 	            int radius = (int) Math.round(c[2]);
 	            Imgproc.circle(image, center, radius, new Scalar(255,0,255), 3, 8, 0 );
-				radiusList.add((int) Math.round(c[2]));
+				diameterList.add((int) Math.round(c[2]));
 			}
 			
-			new ImageViewer().show(image, "circles");
+			//new ImageViewer().show(image, "circles");
 			
-			System.out.println("Circles ="+circles.dump());
+			/*System.out.println("Circles ="+circles.dump());
 			System.out.println(circles);
 			
-			for(Integer t : radiusList) {
+			for(Integer t : diameterList) {
 				System.out.println(t.intValue());
-			}
+			}*/
 			
 			
 		}
+		
+		return image;
+	} //end of method
+	
+	public static ArrayList<Coin> identifyCircles(){
+		ArrayList<Coin> coins = new ArrayList<>();
+		
+		return coins;
 	}
 
 }

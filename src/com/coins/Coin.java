@@ -7,6 +7,12 @@ public class Coin {
 	private float value;
 	
 	
+	public Coin(float diameter) {
+		super();
+		this.diameter = diameter;
+	}
+
+
 	public Coin(float diameter, float value) {
 		super();
 		this.diameter = diameter;
