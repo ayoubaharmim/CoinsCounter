@@ -14,67 +14,67 @@ import com.sun.javafx.geom.Edge;
 public class DetectCircle {
 	
 	static {System.loadLibrary(Core.NATIVE_LIBRARY_NAME);}
-	
-	public static Mat detect(String path) {
-		
-		
-		
-		ArrayList<Integer> diameterList = new ArrayList<>();
-		
-		
-		//read image
-		Mat image = Imgcodecs.imread(path);
-		
-		
-		if(image.dataAddr() == 0) {
-			System.out.println("Error in reading image");
-		}
-		else {
-		
-			Mat gray = new Mat();
-			Imgproc.cvtColor(image, gray, Imgproc.COLOR_BGR2GRAY);
-			//Imgproc.Canny(gray, gray, 1, 1);
-		
-			Imgproc.medianBlur(gray, gray, 11);
-			//new ImageViewer().show(gray, "Blur");
-			Mat circles = new Mat();
-			
-			//Imgproc.HoughCircles(gray, circles, Imgproc.HOUGH_GRADIENT, 1, 1);
-			
-			Imgproc.HoughCircles(gray, circles, Imgproc.HOUGH_GRADIENT, 1.0,
-	                (double)gray.rows()/16, // change this value to detect circles with different distances to each other
-	                100.0, 30.0, 1, 10000); // change the last two parameters
-	                // (min_radius & max_radius) to detect larger circles
+ 
+	public static Mat readImg(String filePath){
 
-			
-			for(int i=0; i<circles.cols(); i++) {
-				double[] c = circles.get(0, i);
-				Point center = new Point(Math.round(c[0]), Math.round(c[1]));
-				
-				Imgproc.circle(image, center, 1, new Scalar(0,100,100), 3, 8, 0 );
-	            int radius = (int) Math.round(c[2]);
-	            Imgproc.circle(image, center, radius, new Scalar(255,0,255), 3, 8, 0 );
-				diameterList.add((int) Math.round(c[2]));
+		Mat img = Imgcodecs.imread(filePath);
+
+		if(img.dataAddr() == 0) {
+				System.out.println("Error in reading image");
+				System.exit(0);
 			}
-			
-			//new ImageViewer().show(image, "circles");
-			
-			/*System.out.println("Circles ="+circles.dump());
-			System.out.println(circles);
-			
-			for(Integer t : diameterList) {
-				System.out.println(t.intValue());
-			}*/
-			
-			
+
+			return img;
+
+	}
+
+	public static Mat matOfCircles(String filePath){
+
+		Mat circles = new Mat();
+
+		Mat img = DetectCircle.readImg(filePath);
+		Mat gray = new Mat();
+		Imgproc.cvtColor(img, gray, Imgproc.COLOR_BGR2GRAY);
+		Imgproc.medianBlur(gray, gray, 11);
+		Imgproc.HoughCircles(gray, circles, Imgproc.HOUGH_GRADIENT, 1.0,
+		                (double)gray.rows()/16, // change this value to detect circles with different distances to each other
+		                100.0, 30.0, 1, 10000); // change the last two parameters
+		                // (min_radius & max_radius) to detect larger circles
+		                
+		return circles;
+	}
+
+	public static Mat drawCircles(String filePath){
+
+		Mat dest = DetectCircle.readImg(filePath);
+		Mat circles = DetectCircle.matOfCircles(filePath);
+
+		for(int i=0; i<circles.cols(); i++){
+			double[] c = circles.get(0,i);
+			Point center = new Point(Math.round(c[0]), Math.round(c[1]));
+
+			Imgproc.circle(dest, center, 1, new Scalar(0,100,100), 3, 8, 0 );
+		    int diameter = (int) Math.round(c[2]);
+		    Imgproc.circle(dest, center, diameter, new Scalar(255,0,255), 3, 8, 0 );
 		}
-		
-		return image;
-	} //end of method
+
+		return dest;
+
+	}
+
+
 	
-	public static ArrayList<Coin> identifyCircles(){
+	public static ArrayList<Coin> identifyCircles(String filePath){
 		ArrayList<Coin> coins = new ArrayList<>();
-		
+		//Mat dest = DetectCircle.readImg(filePath);
+		Mat circles = DetectCircle.matOfCircles(filePath);
+
+		for(int i=0; i<circles.cols(); i++){
+			double[] c = circles.get(0,i);
+			//Point center = new Point(Math.round(c[0]), Math.round(c[1]));
+		    float diameter = Math.round(c[2]);
+		    coins.add(new Coin(diameter));
+		}
 		return coins;
 	}
 

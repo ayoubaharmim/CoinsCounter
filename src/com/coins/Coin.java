@@ -38,6 +38,12 @@ public class Coin {
 	public void setValue(float value) {
 		this.value = value;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Coin [diameter=" + diameter + "]";
+	}
 	
 	
 	
