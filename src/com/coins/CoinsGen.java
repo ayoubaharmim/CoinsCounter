@@ -1,65 +1,70 @@
 package com.coins;
 
+import java.util.ArrayList;
+
 public class CoinsGen {
 	
 
 	
 	
-	/*public static void generate(Coin C1, Coin C5, Coin C10, Coin C20, Coin C50, Coin D1, Coin D2, Coin D5, Coin D10) {
-		
-		// C1
+	public static ArrayList<Coin> GenerateBaseCoins() {
+		ArrayList<Coin> ALIC = new ArrayList<>();
+ 		// C1
+		Coin C1 = new Coin();
 		C1.setDiameter(17);
-		C1.setRadius(17/2);
-		C1.setRapport(new float[] {17/17, 17/17.5f, 17/20, 17/23, 17/21, 17/24, 17/26, 17/25, 17/28});
 		C1.setValue(0.01f);
-		
+		ALIC.add(C1);
 		//C5
+		Coin C5 = new Coin();
 		C5.setDiameter(17.5f);
-		C5.setRadius(17.5f/2);
-		C5.setRapport(new float[] {17.5f/17, 17.5f/17.5f, 17.5f/20, 17.5f/23, 17.5f/21, 17.5f/24, 17.5f/26, 17.5f/25, 17.5f/28});
 		C5.setValue(0.05f);
+		ALIC.add(C5);
 		
 		//C10
+		Coin C10 = new Coin();
 		C10.setDiameter(20);
-		C10.setRadius(10);
-		C10.setRapport(new float[] {20/17, 20/17.5f, 1, 20/23, 20/21, 20/24, 20/26, 20/25, 20/28});
 		C10.setValue(0.1f);
+		ALIC.add(C10);
 		
 		//C20
+		Coin C20 = new Coin();
 		C20.setDiameter(23);
-		C20.setRadius(23/2);
-		C20.setRapport(new float[] {23/17, 23/17.5f, 23/20, 1, 23/21, 23/24, 23/26, 23/25, 23/28});
 		C20.setValue(0.2f);
+		ALIC.add(C20);
 		
 		//C50
+		Coin C50 = new Coin();
 		C50.setDiameter(21);
-		C50.setRadius(21/2);
-		C50.setRapport(new float[] {21/17, 21/17.5f, 21/20, 21/23, 21/21, 21/24, 21/26, 21/25, 21/28});
 		C50.setValue(0.5f);
+		ALIC.add(C50);
 		
 		// D1
-		
+		Coin D1 = new Coin();
 		D1.setDiameter(24);
-		D1.setRadius(12);
-		D1.setRapport(new float[] {24/17, 24/17.5f, 24/20, 24/23, 24/21, 24/24, 24/26, 24/25, 24/28});
 		D1.setValue(1);
+		ALIC.add(D1);
 		
 		//D2
+		Coin D2 = new Coin();
 		D2.setDiameter(26);
-		D2.setRadius(13);
-		D2.setRapport(new float[] {26/17, 26/17.5f, 26/20, 26/23, 26/21, 26/24, 26/26, 26/25, 26/28});
 		D2.setValue(2);
+		ALIC.add(D2);
 		
 		//D5
+		Coin D5 = new Coin();
 		D5.setDiameter(25);
-		D5.setRadius(25/2);
-		D5.setRapport(new float[] {25/17, 25/17.5f, 25/20, 25/23, 25/21, 25/24, 25/26, 25/25, 25/28});
 		D5.setValue(5);
+		ALIC.add(D5);
 		
 		//D10
+		Coin D10 = new Coin();
 		D10.setDiameter(28);
-		D10.setRadius(14);
-		D10.setRapport(new float[] {28/17, 28/17.5f, 28/20, 28/23, 28/21, 28/24, 28/26, 28/25, 28/28});
-	}*/
+		D10.setValue(10);
+		ALIC.add(D10);
+		
+		return ALIC;
+		
+	}
+
 
 }

@@ -6,20 +6,17 @@ public class Coin {
 	private float diameter;
 	private float value;
 	
+	public Coin() {
+		super();
+	}
+	public Coin(float diam) {
+		this.diameter = diam;
+	}
+	public Coin(float diam, float value) {
+		this.diameter = diam;
+		this.value    = value;
+	}
 	
-	public Coin(float diameter) {
-		super();
-		this.diameter = diameter;
-	}
-
-
-	public Coin(float diameter, float value) {
-		super();
-		this.diameter = diameter;
-		this.value = value;
-	}
-
-
 	public float getDiameter() {
 		return diameter;
 	}
@@ -28,8 +25,6 @@ public class Coin {
 	public void setDiameter(float diameter) {
 		this.diameter = diameter;
 	}
-
-
 	public float getValue() {
 		return value;
 	}
@@ -38,15 +33,15 @@ public class Coin {
 	public void setValue(float value) {
 		this.value = value;
 	}
-
+	
+	public void setCoin(Coin coin)
+	{
+		this.diameter = coin.diameter;
+		this.value    = coin.value   ;
+	}
 
 	@Override
 	public String toString() {
-		return "Coin [diameter=" + diameter + "]";
+		return "Coin [diameter = " + diameter + " ; value = "+ " ]";
 	}
-	
-	
-	
-	
-	
 	}

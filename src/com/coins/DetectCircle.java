@@ -2,14 +2,13 @@ package com.coins;
 
 import java.util.ArrayList;
 
-import org.opencv.core.Core;
-import org.opencv.core.Mat;
-import org.opencv.core.Point;
-import org.opencv.core.Scalar;
+import org.opencv.core.Core			 ;
+import org.opencv.core.Mat			 ;		
+import org.opencv.core.Point		 ;
+import org.opencv.core.Scalar		 ;
 import org.opencv.imgcodecs.Imgcodecs;
-import org.opencv.imgproc.Imgproc;
+import org.opencv.imgproc.Imgproc	 ;
 
-import com.sun.javafx.geom.Edge;
 
 public class DetectCircle {
 	
@@ -19,13 +18,14 @@ public class DetectCircle {
 
 		Mat img = Imgcodecs.imread(filePath);
 
-		if(img.dataAddr() == 0) {
+		if(img.dataAddr() == 0) 
+		{
 				System.out.println("Error in reading image");
 				System.exit(0);
-			}
+		}
 
 			return img;
-
+		
 	}
 
 	public static Mat matOfCircles(String filePath){
@@ -44,22 +44,19 @@ public class DetectCircle {
 		return circles;
 	}
 
-	public static Mat drawCircles(String filePath){
-
-		Mat dest = DetectCircle.readImg(filePath);
+	public static Mat drawCircles(String filePath)
+	{
+		Mat dest 	= DetectCircle.readImg(filePath);
 		Mat circles = DetectCircle.matOfCircles(filePath);
-
-		for(int i=0; i<circles.cols(); i++){
+		for(int i=0; i<circles.cols(); i++)
+		{
 			double[] c = circles.get(0,i);
 			Point center = new Point(Math.round(c[0]), Math.round(c[1]));
-
 			Imgproc.circle(dest, center, 1, new Scalar(0,100,100), 3, 8, 0 );
 		    int diameter = (int) Math.round(c[2]);
 		    Imgproc.circle(dest, center, diameter, new Scalar(255,0,255), 3, 8, 0 );
 		}
-
 		return dest;
-
 	}
 
 
