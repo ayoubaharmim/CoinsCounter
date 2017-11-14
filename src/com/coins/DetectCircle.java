@@ -13,7 +13,7 @@ public class DetectCircle {
 	
 	static {System.loadLibrary(Core.NATIVE_LIBRARY_NAME);}
 	
-	public static void detect(String path) {
+	public static void Detect(String path) {
 		//read image
 		Mat image = Imgcodecs.imread(path);
 		
