@@ -39,7 +39,7 @@ public class DetectCircle {
 		Mat img = DetectCircle.readImg(filePath);
 		Mat gray = new Mat();
 		Imgproc.cvtColor(img, gray, Imgproc.COLOR_BGR2GRAY);
-		Imgproc.medianBlur(gray, gray, 11);
+		Imgproc.medianBlur(gray, gray, 21);
 		//Imgproc.Canny(gray, gray, 0, 11);
 		Imgproc.HoughCircles(gray, circles, Imgproc.HOUGH_GRADIENT, 1.0,
 		                (double)gray.rows()/16, // change this value to detect circles with different distances to each other
@@ -59,8 +59,8 @@ public class DetectCircle {
 			Point center = new Point(Math.round(c[0]), Math.round(c[1]));
 
 			Imgproc.circle(dest, center, 1, new Scalar(0,100,100), 3, 8, 0 );
-		    int diameter = (int) Math.round(c[2]);
-		    Imgproc.circle(dest, center, diameter, new Scalar(255,0,255), 3, 8, 0 );
+		    int radius = (int) Math.round(c[2]);
+		    Imgproc.circle(dest, center, radius, new Scalar(255,0,255), 3, 8, 0 );
 		}
 
 		return dest;
@@ -77,11 +77,26 @@ public class DetectCircle {
 		for(int i=0; i<circles.cols(); i++){
 			double[] c = circles.get(0,i);
 			//Point center = new Point(Math.round(c[0]), Math.round(c[1]));
-		    float diameter = Math.round(c[2]);
-		    coins.add(new Coin(diameter));
+		    float radius = (float) c[2];
+		    coins.add(new Coin(radius*2*0.352778f));
 
 		}
 		return coins;
+	}
+	
+	public static float reference(String filepath) {
+		float ref =0;
+		
+		ArrayList<Coin> coins = DetectCircle.identifyCircles(filepath);
+		ref = coins.get(0).getDiameter();
+		//retrieving the biggest diameter which refers to 10 dh
+		for(int i=0; i<coins.size(); i++) {
+			if(coins.get(i).getDiameter() > ref) {
+				ref = coins.get(i).getDiameter();
+			}
+		}
+		
+		return ref;
 	}
 
 }
