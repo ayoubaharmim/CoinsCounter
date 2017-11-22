@@ -1,5 +1,11 @@
 package com.coins;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 public class Coin {
 	
 
@@ -45,8 +51,4 @@ public class Coin {
 		return "Coin [diameter=" + diameter + "]";
 	}
 	
-	
-	
-	
-	
-	}
+}

@@ -7,9 +7,9 @@ import org.opencv.core.Mat;
 public class Main {
 
 	public static void main(String[] args) {
-		//Mat coins = DetectCircle.drawCircles("src/images/coins.jpg");
+		Mat coins = DetectCircle.drawCircles("src/images/coins.jpg");
 		
-		//new ImageViewer().show(coins, "circles");
+		new ImageViewer().show(coins, "circles");
 		
 		ArrayList<Coin> id = DetectCircle.identifyCircles("src/images/coins.jpg");
 		

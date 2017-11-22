@@ -1,6 +1,10 @@
 package com.coins;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -36,9 +40,10 @@ public class DetectCircle {
 		Mat gray = new Mat();
 		Imgproc.cvtColor(img, gray, Imgproc.COLOR_BGR2GRAY);
 		Imgproc.medianBlur(gray, gray, 11);
+		//Imgproc.Canny(gray, gray, 0, 11);
 		Imgproc.HoughCircles(gray, circles, Imgproc.HOUGH_GRADIENT, 1.0,
 		                (double)gray.rows()/16, // change this value to detect circles with different distances to each other
-		                100.0, 30.0, 1, 10000); // change the last two parameters
+		                100.0, 30.0, 1, 1000); // change the last two parameters
 		                // (min_radius & max_radius) to detect larger circles
 		                
 		return circles;
@@ -74,6 +79,7 @@ public class DetectCircle {
 			//Point center = new Point(Math.round(c[0]), Math.round(c[1]));
 		    float diameter = Math.round(c[2]);
 		    coins.add(new Coin(diameter));
+
 		}
 		return coins;
 	}
